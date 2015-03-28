@@ -1,0 +1,68 @@
+/* 
+Use this test for seeing the important logs of bruteforce attacks in /var/log/auth.log .
+Please use this on own risk!! If your linux box got security, you might get banned from your own machine. 
+
+Use this as a tester for auto-blocking robots that are trying to bruteforcing into your SSH.
+
+libraries used: simple-ssh and randomstring.
+*/ 
+
+var SSH = require('simple-ssh');
+var randomstring = require("randomstring");
+
+var triedOut = [];
+var theRandomVariable;
+
+var arrayContains = function(pRandomString){
+    var i = triedOut.length;
+    while (i--) {
+       if (triedOut[i] === pRandomString) {
+           return true;
+       }
+    }
+    return false;
+}
+
+var getRandomPassword = function(){
+	theRandomVariable = randomstring.generate(12);
+	if(arrayContains(theRandomVariable)){
+		console.log("Exists in array " + theRandomVariable);
+		getRandomPassword();
+	} else {
+		return randomstring.generate(12);
+	}
+}
+
+var startSSH = function(){
+	var aRandomPassword = getRandomPassword();
+	var ssh = new SSH({
+		host: '<< HOST IP >>',
+		port: '<< HOST PORT / DEFAULT 22 >>',
+		user: '<< HOST USER / DEFAULT ROOT >>',
+		pass: aRandomPassword,
+	});
+
+	ssh.exec("ls", {
+	 	out: function(stdout) {
+	        console.log(stdout);
+	        console.log("Got in! Used password: " + aRandomPassword);
+	    }
+	}).start();
+
+	ssh.on('error', function(err) {
+	    console.log('Did not get in.');
+	    console.log('Tried out: ' + aRandomPassword);
+	    console.log(err);
+
+	    if(aRandomPassword !== undefined){
+		    triedOut.push(aRandomPassword);
+	    }
+
+	    ssh.end();
+	    startSSH();
+
+	    console.log(triedOut.length);
+	});
+}
+
+startSSH();
