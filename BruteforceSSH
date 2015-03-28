@@ -1,6 +1,6 @@
 /* 
 Use this test for seeing the important logs of bruteforce attacks in /var/log/auth.log .
-Please use this on own risk!! If your linux box got security, you might get banned from your own machine. 
+Please use this on own risk!! If your linux box got the security, you might get banned from your own linux box. 
 
 Use this as a tester for auto-blocking robots that are trying to bruteforcing into your SSH.
 
