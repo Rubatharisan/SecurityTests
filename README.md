@@ -18,7 +18,7 @@ A attacker trying to bruteforce into ssh (This is a real attack on a machine):
         << Above message repeats for a million times >>
   
 
-How logs shows how my script is trying to replicate a real attack:
+How /var/log/auth.log shows how my script is trying to replicate a real attack:
 
         Mar 30 00:12:18 MyTestMachine sshd[2346]: Failed password for root from 85.10.169.109 port 38991 ssh2
         Mar 30 00:12:19 MyTestMachine sshd[2346]: Connection closed by 85.10.169.109 [preauth]
