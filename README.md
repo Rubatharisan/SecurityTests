@@ -6,6 +6,7 @@ Tests made to secure my linux box and learn about logs, tool and information abo
 Normally a SSH bruteforce attack can be seen in /var/log/auth.log, unless a attack was succesful and the attacker have removed or partially sanitized the auth.log. 
 
 Example of attempt of bruteforcing ssh login:
+
         Mar 29 17:57:52 YourMachineName sshd[2563]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=221.229.166.245  user=root
         Mar 29 17:57:53 YourMachineName sshd[2575]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=43.255.191.169  user=root
         Mar 29 17:57:54 YourMachineName sshd[2577]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=103.41.124.165  user=root
