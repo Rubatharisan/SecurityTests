@@ -5,6 +5,8 @@ Tests made to secure my linux box and learn about logs, tool and information abo
 ## BruteforceSSH.js
 Normally a SSH bruteforce attack can be seen in /var/log/auth.log, unless a attack was succesful and the attacker have removed or partially sanitized the auth.log. 
 
+Update: There is several places SSH keeps logs about user/root logins. It is possible to see information about logins by using the command: last
+
 A attacker trying to bruteforce into ssh (This is a real attack on a machine):
 
         Mar 29 17:57:52 YourMachineName sshd[2563]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=221.229.166.245  user=root
